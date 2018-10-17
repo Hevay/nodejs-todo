@@ -5,10 +5,10 @@
  @Author:         Hevay
  @Date: create in 2018/10/17  10:28
  */
-
 let mongoose = require("mongoose");
+let config = require("./config");
 //连接数据库
-mongoose.connect("mongodb://localhost/todos", {useNewUrlParser: true});
+mongoose.connect(`mongodb://localhost/${config.DB}`, {useNewUrlParser: true});
 let db = mongoose.connection;
 
 db.on("error", (err) => {

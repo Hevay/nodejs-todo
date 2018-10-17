@@ -67,7 +67,6 @@ async function updateTodo(id, todo) {
  */
 async function findAll() {
     let result = await Todo.find();
-    console.log("查找所有的数据结果: " + result);
     return result;
 }
 

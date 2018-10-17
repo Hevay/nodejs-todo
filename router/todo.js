@@ -7,7 +7,8 @@
  */
 let router = require("express").Router();
 let todoService = require("../service/todo");
-
+// let responseUtil = require("../utils/responseUtil");
+require("../middleware/response_md")
 //添加数据,post请求
 /**
  * 添加数据
@@ -17,11 +18,10 @@ let todoService = require("../service/todo");
 router.post("/", async (request, response) => {
     let body = request.body;
     let result = await todoService.addTodo(body);
-    response.send({
-        code: 1,
-        msg: "添加成功!",
-        data: result
-    });
+    //使用responseUtil写出成功的响应
+    //responseUtil.success(response, result);
+    //使用增强response写回成功的响应
+    response.success(result);
 });
 
 
@@ -33,10 +33,10 @@ router.post("/", async (request, response) => {
 router.delete("/:id", async (request, response) => {
     let id = request.params.id;
     await todoService.deleteTodo(id);
-    response.send({
-        code: 1,
-        msg: "删除成功!"
-    });
+    //使用responseUtil写出成功的响应
+    //responseUtil.success(response);
+    //使用增强ressponse写回成功的响应
+    response.success();
 });
 
 
@@ -50,10 +50,10 @@ router.put("/:id", async (request, response) => {
     let id = request.params.id;
     let body = request.body;
     todoService.updateTodo(id, body);
-    response.send({
-        code: 1,
-        msg: "更新成功!"
-    });
+    //使用responseUtil写出成功的响应
+    //responseUtil.success(response);
+    //使用增强ressponse写回成功的响应
+    response.success();
 });
 
 /**
@@ -63,11 +63,10 @@ router.put("/:id", async (request, response) => {
  */
 router.get("/", async (request, response) => {
     let result = await todoService.findAll();
-    response.send({
-        code: 1,
-        msg: "查询成功!",
-        data: result
-    });
+    //使用responseUtil写出成功的响应
+    //responseUtil.success(response, result);
+    //使用增强response写回成功的响应
+    response.success(result);
 })
 
 module.exports = router;
