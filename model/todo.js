@@ -7,7 +7,7 @@ let schema = new mongoose.Schema({
             unique: [true, "待办事项不能重复"]//unique唯一类型
         },
         //是否完成
-        isNone: {
+    isDone: {
             type: Boolean,
             default: false
         },
